@@ -70,6 +70,7 @@ function GlobalStoreContextProvider(props) {
     // HANDLE EVERY TYPE OF STATE CHANGE
     const storeReducer = (action) => {
         const { type, payload } = action;
+        console.log("storeReducer: " + type + " " + payload);
         switch (type) {
             // LIST UPDATE OF ITS NAME
             case GlobalStoreActionType.CHANGE_LIST_NAME: {
@@ -296,7 +297,7 @@ function GlobalStoreContextProvider(props) {
                 });
             }
             else {
-                //console.log("API FAILED TO GET THE LIST PAIRS");
+                console.log("API FAILED TO GET THE LIST PAIRS");
             }
         }
         asyncLoadIdNamePairs();
@@ -323,15 +324,18 @@ function GlobalStoreContextProvider(props) {
         async function processDelete(id) {
             let response = await api.deletePlaylistById(id);
             if (response.data.success) {
-                store.loadIdNamePairs();
+                store.loadIdNamePairs()
                 history.push("/");
+                store.hideModals();
+            }
+            else {
+                console.log("API FAILED TO DELETE THE LIST");
             }
         }
         processDelete(id);
     }
     store.deleteMarkedList = function() {
         store.deleteList(store.listIdMarkedForDeletion);
-        store.hideModals();
     }
     // THIS FUNCTION SHOWS THE MODAL FOR PROMPTING THE USER
     // TO SEE IF THEY REALLY WANT TO DELETE THE LIST

@@ -23,7 +23,7 @@ function AuthContextProvider(props) {
 
     useEffect(() => {
         auth.getLoggedIn();
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const authReducer = (action) => {
         const { type, payload } = action;

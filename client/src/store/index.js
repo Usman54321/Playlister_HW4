@@ -526,6 +526,10 @@ function GlobalStoreContextProvider(props) {
         });
     }
 
+    store.isModalOpen = () => {
+        return store.currentModal !== CurrentModal.NONE;
+    }
+
     return (
         <GlobalStoreContext.Provider value={{
             store

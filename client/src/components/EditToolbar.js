@@ -30,32 +30,32 @@ function EditToolbar() {
     return (
         <div id="edit-toolbar">
             <Button
-                disabled={!store.canAddNewSong()}
+                disabled={!store.canAddNewSong() || store.isModalOpen()}
                 id='add-song-button'
                 onClick={handleAddNewSong}
                 variant="contained">
                 <AddIcon />
             </Button>
-            <Button 
-                disabled={!store.canUndo()}
+            <Button
+                disabled={!store.canUndo() || store.isModalOpen()}
                 id='undo-button'
                 onClick={handleUndo}
                 variant="contained">
-                    <UndoIcon />
+                <UndoIcon />
             </Button>
-            <Button 
-                disabled={!store.canRedo()}
+            <Button
+                disabled={!store.canRedo() || store.isModalOpen()}
                 id='redo-button'
                 onClick={handleRedo}
                 variant="contained">
-                    <RedoIcon />
+                <RedoIcon />
             </Button>
-            <Button 
-                disabled={!store.canClose()}
+            <Button
+                disabled={!store.canClose() || store.isModalOpen()}
                 id='close-button'
                 onClick={handleClose}
                 variant="contained">
-                    <CloseIcon />
+                <CloseIcon />
             </Button>
         </div>
     )

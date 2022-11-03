@@ -26,7 +26,8 @@ export default function MUIDeleteModal() {
         store.deleteMarkedList();
     }
     function handleCloseModal(event) {
-        store.unmarkListForDeletion();
+        // store.unmarkListForDeletion();
+        store.hideModals();
     }
 
     return (
@@ -35,22 +36,22 @@ export default function MUIDeleteModal() {
         >
             <Box sx={style}>
                 <div className="modal-dialog">
-                <header className="dialog-header">
-                    Are you sure you want to delete the {name} Playlist?
-                </header>
-                <div id="confirm-cancel-container">
-                    <button
-                        id="dialog-yes-button"
-                        className="modal-button"
-                        onClick={handleDeleteList}
-                    >Confirm</button>
-                    <button
-                        id="dialog-no-button"
-                        className="modal-button"
-                        onClick={handleCloseModal}
-                    >Cancel</button>
+                    <header className="dialog-header">
+                        Are you sure you want to delete the {name} Playlist?
+                    </header>
+                    <div id="confirm-cancel-container">
+                        <button
+                            id="dialog-yes-button"
+                            className="modal-button"
+                            onClick={handleDeleteList}
+                        >Confirm</button>
+                        <button
+                            id="dialog-no-button"
+                            className="modal-button"
+                            onClick={handleCloseModal}
+                        >Cancel</button>
+                    </div>
                 </div>
-            </div>
             </Box>
         </Modal>
     );

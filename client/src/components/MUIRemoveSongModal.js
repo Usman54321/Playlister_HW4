@@ -19,14 +19,18 @@ const style = {
 export default function MUIRemoveSongModal() {
     const { store } = useContext(GlobalStoreContext);
 
-    function handleConfirmRemoveSong() {
+    function handleConfirmRemoveSong () {
         store.addRemoveSongTransaction();
     }
 
-    function handleCancelRemoveSong() {
+    function handleCancelRemoveSong () {
         store.hideModals();
     }
-
+    
+    let modalClass = "modal";
+    if (store.isRemoveSongModalOpen()) {
+        modalClass += " is-visible";
+    }
     let songTitle = "";
     if (store.currentSong) {
         songTitle = store.currentSong.title;
@@ -34,26 +38,37 @@ export default function MUIRemoveSongModal() {
 
     return (
         <Modal
-            open={store.currentSong !== null}
+            open={store.listMarkedForDeletion !== null}
         >
             <Box sx={style}>
-                <div className="modal-dialog">
-                    <header className="dialog-header">
-                        Are you sure you want to delete the {songTitle} from the current playlist?
-                    </header>
-                    <div id="confirm-cancel-container">
-                        <button
-                            id="dialog-yes-button"
-                            className="modal-button"
-                            onClick={handleConfirmRemoveSong}
-                        >Confirm</button>
-                        <button
-                            id="dialog-no-button"
-                            className="modal-button"
-                            onClick={handleCancelRemoveSong}
-                        >Cancel</button>
-                    </div>
+            <div
+        id="remove-song-modal"
+        className={modalClass}
+        data-animation="slideInOutLeft">
+        <div className="modal-root" id='verify-remove-song-root'>
+            <div className="modal-north">
+                Remove {songTitle}?
+            </div>
+            <div className="modal-center">
+                <div className="modal-center-content">
+                    Are you sure you wish to permanently remove {songTitle} from the playlist?
                 </div>
+            </div>
+            <div className="modal-south">
+                <input type="button" 
+                    id="remove-song-confirm-button" 
+                    className="modal-button" 
+                    onClick={handleConfirmRemoveSong} 
+                    value='Confirm' />
+                <input 
+                    type="button" 
+                    id="remove-song-cancel-button" 
+                    className="modal-button" 
+                    onClick={handleCancelRemoveSong} 
+                    value='Cancel' />
+            </div>
+        </div>
+    </div>
             </Box>
         </Modal>
     );

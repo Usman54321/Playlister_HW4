@@ -17,37 +17,37 @@ const HomeScreen = () => {
 
     useEffect(() => {
         store.loadIdNamePairs();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []);
 
     function handleCreateNewList() {
         store.createNewList();
     }
     let listCard = "";
     if (store && store.idNamePairs.length > 0) {
-        listCard =
+        listCard = 
             <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
-                {
-                    store.idNamePairs.map((pair) => (
-                        <ListCard
-                            key={pair._id}
-                            idNamePair={pair}
-                            selected={false}
-                        />
-                    ))
-                }
+            {
+                store.idNamePairs.map((pair) => (
+                    <ListCard
+                        key={pair._id}
+                        idNamePair={pair}
+                        selected={false}
+                    />
+                ))
+            }
             </List>;
     }
     return (
         <div id="playlist-selector">
             <div id="list-selector-heading">
-                <Fab
-                    color="primary"
-                    aria-label="add"
-                    id="add-list-button"
-                    onClick={handleCreateNewList}
-                >
-                    <AddIcon />
-                </Fab>
+            <Fab 
+                color="primary" 
+                aria-label="add"
+                id="add-list-button"
+                onClick={handleCreateNewList}
+            >
+                <AddIcon />
+            </Fab>
                 <Typography variant="h2">Your Lists</Typography>
             </div>
             <div id="list-selector-list">

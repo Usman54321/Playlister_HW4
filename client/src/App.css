@@ -113,7 +113,7 @@ body {
   background-color: var(--swatch-accent);
 }
 
-#playlister-statusbar {
+#top5-statusbar {
   position: absolute;
   left: 0%;
   top: 90%;
@@ -189,8 +189,7 @@ body {
 
 .list-card-button {
   float: right;
-  /* transform: scale(2); */
-  font-size: 18pt;
+  transform: scale(2);
 }
 
 #workspace-home,

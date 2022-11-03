@@ -6,7 +6,6 @@ import MUIRemoveSongModal from './MUIRemoveSongModal'
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import { GlobalStoreContext } from '../store/index.js'
-import Statusbar from './Statusbar.js'
 /*
     This React component lets us edit a loaded list, which only
     happens when we are on the proper route.
@@ -16,7 +15,7 @@ import Statusbar from './Statusbar.js'
 function WorkspaceScreen() {
     const { store } = useContext(GlobalStoreContext);
     store.history = useHistory();
-
+    
     let modalJSX = "";
     if (store.isEditSongModalOpen()) {
         modalJSX = <MUIEditSongModal />;
@@ -24,45 +23,32 @@ function WorkspaceScreen() {
     else if (store.isRemoveSongModalOpen()) {
         modalJSX = <MUIRemoveSongModal />;
     }
-
+    
     if (!store.currentList) {
         return (
             <></>
         );
     }
 
-    // Register a CTRL-Z and CTRL-Y keypress handler
-    document.onkeydown = function (e) {
-        if (e.ctrlKey && e.key === 'z' && !store.isModalOpen()) {
-            store.undo();
-        }
-        else if (e.ctrlKey && e.key === 'y' && !store.isModalOpen()) {
-            store.redo();
-        }
-    }
-
     return (
-        <>
-            <Box>
-                <List
-                    id="playlist-cards"
-                    sx={{ width: '100%', bgcolor: 'background.paper' }}
-                >
-                    {
-                        store.currentList.songs.map((song, index) => (
-                            <SongCard
-                                id={'playlist-song-' + (index)}
-                                key={'playlist-song-' + (index)}
-                                index={index}
-                                song={song}
-                            />
-                        ))
-                    }
-                </List>
-                {modalJSX}
-            </Box>
-            <Statusbar />
-        </>
+        <Box>
+        <List 
+            id="playlist-cards" 
+            sx={{ width: '100%', bgcolor: 'background.paper' }}
+        >
+            {
+                store.currentList.songs.map((song, index) => (
+                    <SongCard
+                        id={'playlist-song-' + (index)}
+                        key={'playlist-song-' + (index)}
+                        index={index}
+                        song={song}
+                    />
+                ))  
+            }
+         </List>            
+         { modalJSX }
+         </Box>
     )
 }
 

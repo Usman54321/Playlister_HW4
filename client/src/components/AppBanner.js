@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AuthContext from '../auth';
 import { GlobalStoreContext } from '../store'
 
@@ -13,19 +13,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { createSvgIcon } from '@mui/material';
-
-const HomeIcon = createSvgIcon(
-    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />,
-    'Home',
-);
 
 export default function AppBanner() {
     const { auth } = useContext(AuthContext);
     const { store } = useContext(GlobalStoreContext);
     const [anchorEl, setAnchorEl] = useState(null);
     const isMenuOpen = Boolean(anchorEl);
-    const history = useHistory();
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -61,7 +54,7 @@ export default function AppBanner() {
             <MenuItem onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
         </Menu>
     );
-    const loggedInMenu =
+    const loggedInMenu = 
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{
@@ -78,7 +71,7 @@ export default function AppBanner() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
-        </Menu>
+        </Menu>        
 
     let editToolbar = "";
     let menu = loggedOutMenu;
@@ -88,45 +81,27 @@ export default function AppBanner() {
             editToolbar = <EditToolbar />;
         }
     }
-
+    
     function getAccountMenu(loggedIn) {
         let userInitials = auth.getUserInitials();
         //console.log("userInitials: " + userInitials);
-        if (loggedIn)
+        if (loggedIn) 
             return <div>{userInitials}</div>;
         else
             return <AccountCircle />;
-    }
-
-    function goHome() {
-        if (auth.loggedIn) {
-            store.closeCurrentList();
-        }
-        else
-            history.push('/');
     }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography
+                    <Typography                        
                         variant="h4"
                         noWrap
                         component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                        sx={{ display: { xs: 'none', sm: 'block' } }}                        
                     >
-                        {/* <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>⌂</Link> */}
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                            onClick={goHome}
-                        >
-                            <HomeIcon />
-                        </IconButton>
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>⌂</Link>
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -139,7 +114,7 @@ export default function AppBanner() {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            {getAccountMenu(auth.loggedIn)}
+                            { getAccountMenu(auth.loggedIn) }
                         </IconButton>
                     </Box>
                 </Toolbar>

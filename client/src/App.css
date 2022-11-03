@@ -189,7 +189,7 @@ body {
 
 .list-card-button {
   float: right;
-  transform: scale(2);
+  font-size: 18pt;
 }
 
 #workspace-home,

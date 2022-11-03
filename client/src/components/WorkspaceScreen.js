@@ -31,6 +31,16 @@ function WorkspaceScreen() {
         );
     }
 
+    // Register a CTRL-Z and CTRL-Y keypress handler
+    document.onkeydown = function (e) {
+        if (e.ctrlKey && e.key === 'z' && !store.isModalOpen()) {
+            store.undo();
+        }
+        else if (e.ctrlKey && e.key === 'y' && !store.isModalOpen()) {
+            store.redo();
+        }
+    }
+
     return (
         <>
             <Box>

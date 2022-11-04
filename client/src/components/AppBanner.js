@@ -99,7 +99,10 @@ export default function AppBanner() {
     }
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box 
+        sx={{ flexGrow: 1 }}
+        style={{display: 'flex', flexDirection: 'column'}}
+        >
             <AppBar position="static">
                 <Toolbar>
                     <Typography
@@ -111,13 +114,15 @@ export default function AppBanner() {
                         {/* <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>⌂</Link> */}
                         <IconButton
                             size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
+                            // edge="start"
+                            // color="inherit"
+                            // aria-label="menu"
+                            // sx={{ mr: 2 }}
+                            style={{ textDecration: 'none', color: 'white' }}
                             onClick={() => store.closeCurrentList()}
                         >
-                            <HomeIcon />
+                            ⌂
+                            {/* <HomeIcon /> */}
                         </IconButton>
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>

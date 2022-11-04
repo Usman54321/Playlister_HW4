@@ -9,7 +9,12 @@ import { Typography } from '@mui/material'
 */
 function Statusbar() {
     const { store } = useContext(GlobalStoreContext);
-    let text ="";
+    if (!store || !store.currentList) {
+        return (
+            <></>
+        );
+    }
+    let text = "";
     if (store.currentList)
         text = store.currentList.name;
     return (

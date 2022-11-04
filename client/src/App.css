@@ -149,7 +149,7 @@ body {
   left: 0%;
   top: 18%;
   width: 100%;
-  height: 90%;
+  height: 82%;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -262,6 +262,16 @@ input {
 
 .disabled:hover {
   color: var(--swatch-neutral);
+}
+
+#playlist-selector,
+#playlist-cards {
+  /* overflow-y: scroll; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 80%;
+  /* position: absolute; */
 }
 
 /* THIS STYLE SHEET MANAGES STYLE FOR OUR MODAL, i.e. DIALOG BOX */

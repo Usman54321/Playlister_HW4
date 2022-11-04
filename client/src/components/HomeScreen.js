@@ -56,7 +56,8 @@ const HomeScreen = () => {
                 }
                 <MUIDeleteModal />
             </div>
-        </div>)
+        </div>
+    );
 }
 
 export default HomeScreen;

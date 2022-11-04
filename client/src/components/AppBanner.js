@@ -98,14 +98,6 @@ export default function AppBanner() {
             return <AccountCircle />;
     }
 
-    function goHome() {
-        if (auth.loggedIn) {
-            store.closeCurrentList();
-        }
-        else
-            history.push('/');
-    }
-
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -123,7 +115,7 @@ export default function AppBanner() {
                             color="inherit"
                             aria-label="menu"
                             sx={{ mr: 2 }}
-                            onClick={goHome}
+                            onClick={() => store.closeCurrentList()}
                         >
                             <HomeIcon />
                         </IconButton>

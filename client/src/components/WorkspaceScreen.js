@@ -61,7 +61,6 @@ function WorkspaceScreen() {
                     }
                 </List>
                 {modalJSX}
-                {/* <Statusbar /> */}
             </Box>
         </div>
     )

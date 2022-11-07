@@ -50,12 +50,14 @@ export default function AppBanner() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <Link to='/login/'>Login
+            <Link to='/login/'>
                 <MenuItem onClick={handleMenuClose}>
+                    Login
                 </MenuItem>
             </Link>
-            <Link to='/register/'>Create New Account
+            <Link to='/register/'>
                 <MenuItem onClick={handleMenuClose}>
+                    Create New Account
                 </MenuItem>
             </Link>
         </Menu >

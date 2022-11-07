@@ -72,7 +72,7 @@ deletePlaylist = async (req, res) => {
                     if (index > -1) {
                         user.playlists.splice(index, 1);
                     }
-                    user.save();
+                    user.save().catch(err => console.log(err));
                 }
                 else {
                     console.log("incorrect user!");

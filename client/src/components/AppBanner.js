@@ -92,9 +92,9 @@ export default function AppBanner() {
     }
 
     return (
-        <Box 
-        sx={{ flexGrow: 1 }}
-        style={{display: 'flex', flexDirection: 'column'}}
+        <Box
+            sx={{ flexGrow: 1 }}
+            style={{ display: 'flex', flexDirection: 'column' }}
         >
             <AppBar position="static">
                 <Toolbar>
